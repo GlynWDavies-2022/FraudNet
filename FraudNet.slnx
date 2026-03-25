@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="FraudNet.Shared.Tests/FraudNet.Shared.Tests.csproj" />
   <Project Path="FraudNet.Shared/FraudNet.Shared.csproj" />
 </Solution>
