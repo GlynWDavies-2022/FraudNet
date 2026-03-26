@@ -2,7 +2,7 @@
 
 public class Payment : BaseEntity
 {
-    public required DateTime PaymentDate { get; set; }
+    public required DateTime Timestamp { get; set; }
     public required decimal Amount { get; set; }
     public required string Reference {  get; set; }
     public required int PayeeId { get; set; }
