@@ -1,4 +1,6 @@
 <Solution>
+  <Project Path="FraudNet.API.Tests/FraudNet.API.Tests.csproj" Id="55098f2b-20b0-4716-8e85-d790515c4bf6" />
+  <Project Path="FraudNet.API/FraudNet.API.csproj" Id="77ba748b-7632-46e2-9275-c59297d5eb08" />
   <Project Path="FraudNet.Shared.Tests/FraudNet.Shared.Tests.csproj" />
   <Project Path="FraudNet.Shared/FraudNet.Shared.csproj" />
 </Solution>
