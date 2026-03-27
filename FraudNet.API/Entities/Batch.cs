@@ -6,4 +6,5 @@ public class Batch : BaseEntity
     public required DateTime Timestamp { get; set; }
     public required int CompanyId { get; set; }
     public required Company Company { get; set; }
+
 }
