@@ -1,6 +1,8 @@
 <Solution>
   <Project Path="FraudNet.API.Tests/FraudNet.API.Tests.csproj" Id="55098f2b-20b0-4716-8e85-d790515c4bf6" />
   <Project Path="FraudNet.API/FraudNet.API.csproj" Id="77ba748b-7632-46e2-9275-c59297d5eb08" />
+  <Project Path="FraudNet.Job.Tests/FraudNet.Job.Tests.csproj" Id="ff49914b-1c53-4968-9944-a1208cb4e58b" />
+  <Project Path="FraudNet.Job/FraudNet.Job.csproj" Id="273b34ea-341a-4556-9449-6a0a6be22b01" />
   <Project Path="FraudNet.Shared.Tests/FraudNet.Shared.Tests.csproj" />
   <Project Path="FraudNet.Shared/FraudNet.Shared.csproj" />
 </Solution>
