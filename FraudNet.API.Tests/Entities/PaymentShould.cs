@@ -16,7 +16,7 @@ public class PaymentShould
             Amount = 999.99M,
             Reference = "ABC-12345",
             PayeeId = 1,
-            Type = PaymentType.REGULAR,
+            Type = PaymentType.RECURRING,
             BatchId = 1,
         };
 
@@ -27,7 +27,7 @@ public class PaymentShould
             Amount = 999.99M,
             Reference = "ABC-12345",
             PayeeId = 2,
-            Type = PaymentType.REGULAR,
+            Type = PaymentType.RECURRING,
             BatchId = 1,
         };
 
@@ -52,7 +52,7 @@ public class PaymentShould
             Amount = 999.99M,
             Reference = "ABC-12345",
             PayeeId = 1,
-            Type = PaymentType.REGULAR,
+            Type = PaymentType.RECURRING,
             BatchId = 1,
         };
 
@@ -63,7 +63,7 @@ public class PaymentShould
             Amount = 999.99M,
             Reference = "ABC-12340",
             PayeeId = 2,
-            Type = PaymentType.REGULAR,
+            Type = PaymentType.RECURRING,
             BatchId = 1,
         };
 

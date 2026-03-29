@@ -3,5 +3,5 @@
 public enum PaymentType
 {
     ONCE_OFF,
-    REGULAR
+    RECURRING
 }
