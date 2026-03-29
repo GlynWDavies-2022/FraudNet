@@ -2,6 +2,8 @@
 // Application Entry Point
 // ------------------------------------------------------------------------------------------------
 
+using FraudNet.API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // ------------------------------------------------------------------------------------------------
@@ -11,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddOpenApi();
+
+builder.Services.AddSingleton<IPaymentsDataStore, PaymentsDataStore>();
 
 var app = builder.Build();
 
