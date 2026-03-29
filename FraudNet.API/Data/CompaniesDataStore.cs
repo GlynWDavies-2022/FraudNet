@@ -8,32 +8,33 @@ public class CompaniesDataStore : ICompaniesDataStore
 
     public CompaniesDataStore()
     {
-        Companies = 
+        Companies =
         [
             new()
             {
                 Id = 1,
-                Name = "Abode"
-            },
-            new()
-            {
-                Id = 2,
-                Name = "Crib"
-            },
-            new()
-            {
-                Id = 3,
-                Name = "Digs"
-            },
-            new()
-            {
-                Id = 4,
-                Name = "Dwelling"
-            },
-            new()
-            {
-                Id = 5,
-                Name = "Habitat"
+                Name = "Abode",
+                Batches =
+                [
+                    new() 
+                    {
+                        Id = 1,
+                        FileName = "ABD-20260329-01.txt",
+                        Payments = 
+                        [
+                            new()
+                            {
+                                Id = 1,
+                                Timestamp = DateTime.Now,
+                                Amount = 999M,
+                                Reference = "A-123",
+                                Payee = "Anne Alpha",
+                                PaymentType = "Recurring",
+                                BatchId = 1
+                            }
+                        ]
+                    }
+                ]
             }
         ];
     }
