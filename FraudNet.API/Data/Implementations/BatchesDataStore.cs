@@ -1,6 +1,7 @@
-﻿using FraudNet.API.Models;
+﻿using FraudNet.API.Data.Contracts;
+using FraudNet.API.Models;
 
-namespace FraudNet.API.Data;
+namespace FraudNet.API.Data.Implementations;
 
 public class BatchesDataStore : IBatchesDataStore
 {

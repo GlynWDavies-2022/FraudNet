@@ -1,4 +1,4 @@
-﻿using FraudNet.API.Data;
+﻿using FraudNet.API.Data.Contracts;
 using FraudNet.API.Models;
 using Microsoft.AspNetCore.Mvc;
 

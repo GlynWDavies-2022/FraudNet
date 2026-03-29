@@ -2,7 +2,8 @@
 // Application Entry Point
 // ------------------------------------------------------------------------------------------------
 
-using FraudNet.API.Data;
+using FraudNet.API.Data.Contracts;
+using FraudNet.API.Data.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
