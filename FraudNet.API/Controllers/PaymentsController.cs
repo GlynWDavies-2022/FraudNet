@@ -1,4 +1,5 @@
 ﻿using FraudNet.API.Data;
+using FraudNet.API.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FraudNet.API.Controllers;
@@ -15,14 +16,21 @@ public class PaymentsController : ControllerBase
     }
 
     [HttpGet()]
-    public JsonResult GetPayments()
+    public ActionResult<IEnumerable<PaymentDTO>> GetPayments()
     {
         return new JsonResult(_paymentsDataStore.Payments);
     }
 
     [HttpGet("{id}")]
-    public JsonResult GetCityById(int id)
+    public ActionResult<PaymentDTO> GetCityById(int id)
     {
-        return new JsonResult(_paymentsDataStore.Payments.FirstOrDefault(p => p.Id == id));
+        var payment = _paymentsDataStore.Payments.FirstOrDefault(p => p.Id == id);
+
+        if (payment is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(payment);
     }
 }
