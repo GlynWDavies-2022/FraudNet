@@ -1,4 +1,6 @@
-﻿namespace FraudNet.API.Models;
+﻿using FraudNet.API.Models.Batch;
+
+namespace FraudNet.API.Models.Company;
 
 public class CompanyDTO
 {

@@ -1,5 +1,5 @@
 ﻿using FraudNet.API.Data.Contracts;
-using FraudNet.API.Models;
+using FraudNet.API.Models.Company;
 
 namespace FraudNet.API.Data.Implementations;
 
@@ -30,8 +30,7 @@ public class CompaniesDataStore : ICompaniesDataStore
                                 Amount = 999M,
                                 Reference = "A-123",
                                 Payee = "Anne Alpha",
-                                PaymentType = "Recurring",
-                                BatchId = 1
+                                PaymentType = "Recurring"
                             }
                         ]
                     }

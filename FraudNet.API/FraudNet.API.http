@@ -11,6 +11,12 @@ GET {{baseUrl}}/api/companies/{{companyId}}/batches
 GET {{baseUrl}}/api/companies/{{companyId}}/batches/{{batchId}}
 
 ###
+GET {{baseUrl}}/api/companies
+
+###
+GET {{baseUrl}}/api/companies/{{companyId}}
+
+###
 GET {{baseUrl}}/api/payees
 
 ###

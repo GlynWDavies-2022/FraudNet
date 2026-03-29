@@ -1,4 +1,4 @@
-﻿using FraudNet.API.Models;
+﻿using FraudNet.API.Models.Batch;
 
 namespace FraudNet.API.Data.Contracts;
 

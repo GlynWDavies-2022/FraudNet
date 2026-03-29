@@ -1,6 +1,6 @@
 ﻿using FraudNet.API.Entities;
 
-namespace FraudNet.API.Models;
+namespace FraudNet.API.Models.Payment;
 
 public class PaymentDTO
 {
@@ -10,5 +10,4 @@ public class PaymentDTO
     public string? Reference { get; set; }
     public string? Payee { get; set; }
     public string? PaymentType { get; set; }
-    public int BatchId { get; set; }
 }

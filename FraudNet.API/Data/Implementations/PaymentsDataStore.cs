@@ -1,5 +1,5 @@
 ﻿using FraudNet.API.Data.Contracts;
-using FraudNet.API.Models;
+using FraudNet.API.Models.Payment;
 
 namespace FraudNet.API.Data.Implementations;
 
@@ -18,8 +18,7 @@ public class PaymentsDataStore : IPaymentsDataStore
                 Amount = 999M,
                 Reference = "A-123",
                 Payee = "Anne Alpha",
-                PaymentType = "Recurring",
-                BatchId = 1,
+                PaymentType = "Recurring"
             },
             new()
             {
@@ -28,8 +27,7 @@ public class PaymentsDataStore : IPaymentsDataStore
                 Amount = 999M,
                 Reference = "A-456",
                 Payee = "Brian Bravo",
-                PaymentType = "Recurring",
-                BatchId = 1,
+                PaymentType = "Recurring"
             },
         ];
     }

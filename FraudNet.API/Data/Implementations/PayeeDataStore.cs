@@ -1,5 +1,5 @@
 ﻿using FraudNet.API.Data.Contracts;
-using FraudNet.API.Models;
+using FraudNet.API.Models.Payee;
 
 namespace FraudNet.API.Data.Implementations;
 

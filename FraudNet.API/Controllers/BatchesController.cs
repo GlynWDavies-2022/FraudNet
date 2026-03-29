@@ -1,5 +1,5 @@
 ﻿using FraudNet.API.Data.Contracts;
-using FraudNet.API.Models;
+using FraudNet.API.Models.Batch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FraudNet.API.Controllers;
