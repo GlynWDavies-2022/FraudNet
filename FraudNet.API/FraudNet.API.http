@@ -8,6 +8,15 @@
 GET {{baseUrl}}/api/companies/{{companyId}}/batches
 
 ###
+GET {{baseUrl}}/api/companies/{{companyId}}/batches/{{batchId}}
+
+###
+GET {{baseUrl}}/api/payees
+
+###
+GET {{baseUrl}}/api/payees/{{payeeId}}
+
+###
 GET {{baseUrl}}/api/payments
 Accept: application/json
 

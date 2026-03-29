@@ -1,5 +1,8 @@
-﻿namespace FraudNet.API.Models;
+﻿using FraudNet.API.Entities;
 
-public class PayeeDTO
+namespace FraudNet.API.Models;
+
+public class PayeeDTO : BaseEntity
 {
+    public string? Name { get; set; }
 }
