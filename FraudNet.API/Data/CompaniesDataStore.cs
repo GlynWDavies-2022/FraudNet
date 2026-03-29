@@ -16,11 +16,11 @@ public class CompaniesDataStore : ICompaniesDataStore
                 Name = "Abode",
                 Batches =
                 [
-                    new() 
+                    new()
                     {
                         Id = 1,
                         FileName = "ABD-20260329-01.txt",
-                        Payments = 
+                        Payments =
                         [
                             new()
                             {

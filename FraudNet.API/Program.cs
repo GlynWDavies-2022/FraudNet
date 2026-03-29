@@ -14,6 +14,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddOpenApi();
 
+builder.Services.AddSingleton<IBatchesDataStore, BatchesDataStore>();
+builder.Services.AddSingleton<ICompaniesDataStore, CompaniesDataStore>();
+builder.Services.AddSingleton<IPayeeDataStore, PayeeDataStore>();
 builder.Services.AddSingleton<IPaymentsDataStore, PaymentsDataStore>();
 
 var app = builder.Build();

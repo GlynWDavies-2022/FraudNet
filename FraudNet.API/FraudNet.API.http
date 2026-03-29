@@ -1,5 +1,11 @@
 @baseUrl = https://localhost:7185
+@batchId = 1
+@companyId = 1
+@payeeId = 1
 @paymentId = 1
+
+###
+GET {{baseUrl}}/api/companies/{{companyId}}/batches
 
 ###
 GET {{baseUrl}}/api/payments
@@ -7,3 +13,4 @@ Accept: application/json
 
 ###
 GET {{baseUrl}}/api/payments/{{paymentId}}
+
