@@ -44,14 +44,18 @@ public class PayeeDataStore : IPayeeDataStore
         return Payees.Max(p  => p.Id) + 1;
     }
 
-    public void CreatePayee(PayeeForCreationDTO newPayee)
+    public PayeeDTO CreatePayee(PayeeForCreationDTO newPayee)
     {
         var newId = GetNextId();
 
-        Payees.Add(new PayeeDTO
+        var payeeDTO = new PayeeDTO
         {
             Id = newId,
             Name = newPayee.Name,
-        });
+        };
+
+        Payees.Add(payeeDTO);
+
+        return payeeDTO;
     }
 }

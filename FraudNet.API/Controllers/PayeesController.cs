@@ -18,15 +18,15 @@ public class PayeesController : ControllerBase
     [HttpPost]
     public ActionResult<PayeeDTO> CreatePayee([FromBody] PayeeForCreationDTO payee)
     {
-        _payeeDataStore.CreatePayee(payee);
+        var createdPayee = _payeeDataStore.CreatePayee(payee);
 
-        return CreatedAtRoute(
-            "GetPayee",
+        return CreatedAtAction(
+            nameof(GetPayeeById),
             new
             {
-                payeeId = payee.Id,
+               id = createdPayee.Id,
             },
-            payee
+            createdPayee
         );
     }
 
