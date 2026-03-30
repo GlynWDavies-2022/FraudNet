@@ -38,4 +38,20 @@ public class PayeeDataStore : IPayeeDataStore
             },
         ];
     }
+
+    public int GetNextId()
+    {
+        return Payees.Max(p  => p.Id) + 1;
+    }
+
+    public void CreatePayee(PayeeForCreationDTO newPayee)
+    {
+        var newId = GetNextId();
+
+        Payees.Add(new PayeeDTO
+        {
+            Id = newId,
+            Name = newPayee.Name,
+        });
+    }
 }

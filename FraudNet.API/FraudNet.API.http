@@ -17,6 +17,14 @@ GET {{baseUrl}}/api/companies
 GET {{baseUrl}}/api/companies/{{companyId}}
 
 ###
+POST {{baseUrl}}/api/payees
+Content-Type:application/json
+{
+    "id":0,
+    "name":"Francine Foxtrot"
+}
+
+###
 GET {{baseUrl}}/api/payees
 
 ###

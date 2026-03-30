@@ -15,6 +15,21 @@ public class PayeesController : ControllerBase
         _payeeDataStore = payeeDataStore;
     }
 
+    [HttpPost]
+    public ActionResult<PayeeDTO> CreatePayee([FromBody] PayeeForCreationDTO payee)
+    {
+        _payeeDataStore.CreatePayee(payee);
+
+        return CreatedAtRoute(
+            "GetPayee",
+            new
+            {
+                payeeId = payee.Id,
+            },
+            payee
+        );
+    }
+
     [HttpGet]
     public ActionResult<IEnumerable<PayeeDTO>> GetPayees()
     {
@@ -28,7 +43,7 @@ public class PayeesController : ControllerBase
         return Ok(payees);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetPayee")]
     public ActionResult<PayeeDTO> GetPayeeById(int id)
     {
         var payee = _payeeDataStore.Payees.FirstOrDefault(p => p.Id == id);
