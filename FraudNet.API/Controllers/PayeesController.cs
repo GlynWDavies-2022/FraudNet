@@ -7,25 +7,18 @@ namespace FraudNet.API.Controllers;
 
 [Route("api/payees")]
 [ApiController]
-public class PayeesController : ControllerBase
+public class PayeesController(IPayeeDataStore payeeDataStore, ILogger<PayeesController> logger) : ControllerBase
 {
-    private readonly IPayeeDataStore _payeeDataStore;
-
-    public PayeesController(IPayeeDataStore payeeDataStore)
-    {
-        _payeeDataStore = payeeDataStore;
-    }
-
     [HttpPost]
     public ActionResult<PayeeDTO> CreatePayee([FromBody] PayeeForCreationDTO payee)
     {
-        var createdPayee = _payeeDataStore.CreatePayee(payee);
+        var createdPayee = payeeDataStore.CreatePayee(payee);
 
         return CreatedAtAction(
             nameof(GetPayeeById),
             new
             {
-               id = createdPayee.Id,
+                id = createdPayee.Id,
             },
             createdPayee
         );
@@ -34,10 +27,12 @@ public class PayeesController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<PayeeDTO>> GetPayees()
     {
-        var payees = _payeeDataStore.Payees.ToList();
+        var payees = payeeDataStore.Payees.ToList();
 
         if (payees is null)
         {
+            logger.LogInformation("No payees were found.");
+
             return NotFound();
         }
 
@@ -47,10 +42,12 @@ public class PayeesController : ControllerBase
     [HttpGet("{id}", Name = "GetPayee")]
     public ActionResult<PayeeDTO> GetPayeeById(int id)
     {
-        var payee = _payeeDataStore.Payees.FirstOrDefault(p => p.Id == id);
+        var payee = payeeDataStore.Payees.FirstOrDefault(p => p.Id == id);
 
         if (payee == null)
         {
+            logger.LogInformation("No payee was found with an id of {id}", id);
+
             return NotFound();
         }
 
@@ -70,12 +67,13 @@ public class PayeesController : ControllerBase
             return BadRequest();
         }
 
-        var payeeToUpdate = _payeeDataStore.Payees.FirstOrDefault(p => p.Id == id);
+        var payeeToUpdate = payeeDataStore.Payees.FirstOrDefault(p => p.Id == id);
 
         if (payeeToUpdate == null)
         {
             return NotFound();
-        };
+        }
+        ;
 
         payeeToUpdate.Name = payee.Name;
 
@@ -85,7 +83,7 @@ public class PayeesController : ControllerBase
     [HttpPatch("{id}")]
     public ActionResult UpdatePayee(int id, JsonPatchDocument<PayeeForUpdateDTO> payee)
     {
-        var payeeFromStore = _payeeDataStore.Payees.FirstOrDefault(p => p.Id == id);
+        var payeeFromStore = payeeDataStore.Payees.FirstOrDefault(p => p.Id == id);
 
         if (payeeFromStore == null)
         {
@@ -121,7 +119,7 @@ public class PayeesController : ControllerBase
     [HttpDelete("{id}")]
     public ActionResult DeletePointOfInterest(int id)
     {
-        _payeeDataStore.DeletePayee(id);
+        payeeDataStore.DeletePayee(id);
 
         return NoContent();
     }
