@@ -1,5 +1,6 @@
 ﻿using FraudNet.API.Data.Contracts;
 using FraudNet.API.Models.Payee;
+using Microsoft.AspNetCore.JsonPatch.SystemTextJson;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FraudNet.API.Controllers;
@@ -57,19 +58,19 @@ public class PayeesController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public ActionResult UpdatePayee(PayeeForUpdateDTO payee)
+    public ActionResult UpdatePayee(PayeeForUpdateDTO payee, int id)
     {
         if (payee == null)
         {
             return BadRequest();
         }
 
-        if (payee.Id == 0)
+        if (id == 0)
         {
             return BadRequest();
         }
 
-        var payeeToUpdate = _payeeDataStore.Payees.FirstOrDefault(p => p.Id == payee.Id);
+        var payeeToUpdate = _payeeDataStore.Payees.FirstOrDefault(p => p.Id == id);
 
         if (payeeToUpdate == null)
         {
@@ -77,6 +78,42 @@ public class PayeesController : ControllerBase
         };
 
         payeeToUpdate.Name = payee.Name;
+
+        return NoContent();
+    }
+
+    [HttpPatch("{id}")]
+    public ActionResult UpdatePayee(int id, JsonPatchDocument<PayeeForUpdateDTO> payee)
+    {
+        var payeeFromStore = _payeeDataStore.Payees.FirstOrDefault(p => p.Id == id);
+
+        if (payeeFromStore == null)
+        {
+            return NotFound();
+        }
+
+        var payeeToPatch = new PayeeForUpdateDTO()
+        {
+            Name = payeeFromStore.Name
+        };
+
+        payee.ApplyTo(payeeToPatch, jsonPatchError =>
+        {
+            var key = jsonPatchError.AffectedObject.GetType().Name;
+            ModelState.AddModelError(key, jsonPatchError.ErrorMessage);
+        });
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        if (!TryValidateModel(payeeToPatch))
+        {
+            return BadRequest(ModelState);
+        }
+
+        payeeFromStore.Name = payeeToPatch.Name;
 
         return NoContent();
     }

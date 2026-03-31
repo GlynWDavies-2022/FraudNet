@@ -37,6 +37,17 @@ Content-Type: application/json
 }
 
 ###
+PATCH {{baseUrl}}/api/payees/{{payeeId}}
+Content-Type: application/json-patch+json
+[
+    {
+        "op": "replace",
+        "path": "/name",
+        "value": "Emerald Echo"
+    }
+]
+
+###
 DELETE {{baseUrl}}/api/payees/{{payeeId}}
 
 ###
