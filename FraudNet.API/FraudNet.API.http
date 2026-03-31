@@ -1,7 +1,7 @@
 @baseUrl = https://localhost:7185
 @batchId = 1
 @companyId = 1
-@payeeId = 1
+@payeeId = 5
 @paymentId = 1
 
 ###
@@ -28,6 +28,16 @@ GET {{baseUrl}}/api/payees
 
 ###
 GET {{baseUrl}}/api/payees/{{payeeId}}
+
+###
+PUT {{baseUrl}}/api/payees/{{payeeId}}
+Content-Type: application/json
+{
+    "name":"Erica Echo"
+}
+
+###
+DELETE {{baseUrl}}/api/payees/{{payeeId}}
 
 ###
 GET {{baseUrl}}/api/payments

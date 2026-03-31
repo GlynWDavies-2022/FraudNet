@@ -58,4 +58,16 @@ public class PayeeDataStore : IPayeeDataStore
 
         return payeeDTO;
     }
+
+    public void DeletePayee(int id)
+    {
+        var payeeToRemove = Payees.Find(p => p.Id == id);
+
+        if (payeeToRemove == null)
+        {
+            return;
+        }
+
+        Payees.Remove(payeeToRemove);
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace FraudNet.API.Models.Payee;
 
-public class PayeeForCreationDTO
+public class PayeeForUpdateDTO
 {
     public int Id { get; set; }
 

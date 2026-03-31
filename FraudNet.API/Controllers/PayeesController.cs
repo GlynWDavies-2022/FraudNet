@@ -55,4 +55,37 @@ public class PayeesController : ControllerBase
 
         return Ok(payee);
     }
+
+    [HttpPut("{id}")]
+    public ActionResult UpdatePayee(PayeeForUpdateDTO payee)
+    {
+        if (payee == null)
+        {
+            return BadRequest();
+        }
+
+        if (payee.Id == 0)
+        {
+            return BadRequest();
+        }
+
+        var payeeToUpdate = _payeeDataStore.Payees.FirstOrDefault(p => p.Id == payee.Id);
+
+        if (payeeToUpdate == null)
+        {
+            return NotFound();
+        };
+
+        payeeToUpdate.Name = payee.Name;
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult DeletePointOfInterest(int id)
+    {
+        _payeeDataStore.DeletePayee(id);
+
+        return NoContent();
+    }
 }
