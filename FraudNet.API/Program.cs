@@ -4,6 +4,7 @@
 
 using FraudNet.API.Data.Contracts;
 using FraudNet.API.Data.Implementations;
+using FraudNet.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddSingleton<IBatchesDataStore, BatchesDataStore>();
 builder.Services.AddSingleton<ICompaniesDataStore, CompaniesDataStore>();
 builder.Services.AddSingleton<IPayeeDataStore, PayeeDataStore>();
 builder.Services.AddSingleton<IPaymentsDataStore, PaymentsDataStore>();
+
+builder.Services.AddTransient<IMailService, LocalMailService>();
 
 var app = builder.Build();
 

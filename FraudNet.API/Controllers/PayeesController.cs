@@ -1,5 +1,6 @@
 ﻿using FraudNet.API.Data.Contracts;
 using FraudNet.API.Models.Payee;
+using FraudNet.API.Services;
 using Microsoft.AspNetCore.JsonPatch.SystemTextJson;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +8,9 @@ namespace FraudNet.API.Controllers;
 
 [Route("api/payees")]
 [ApiController]
-public class PayeesController(IPayeeDataStore payeeDataStore, ILogger<PayeesController> logger) : ControllerBase
+public class PayeesController(IPayeeDataStore payeeDataStore,
+                              ILogger<PayeesController> logger,
+                              IMailService localMailService) : ControllerBase
 {
     [HttpPost]
     public ActionResult<PayeeDTO> CreatePayee([FromBody] PayeeForCreationDTO payee)
@@ -120,6 +123,8 @@ public class PayeesController(IPayeeDataStore payeeDataStore, ILogger<PayeesCont
     public ActionResult DeletePointOfInterest(int id)
     {
         payeeDataStore.DeletePayee(id);
+
+        localMailService.Send("Payee Deletion", "A payee was deleted!");
 
         return NoContent();
     }
