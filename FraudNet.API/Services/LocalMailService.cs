@@ -1,9 +1,9 @@
 ﻿namespace FraudNet.API.Services;
 
-public class LocalMailService : IMailService
+public class LocalMailService(IConfiguration configuration) : IMailService
 {
-    private string _mailTo = "admin@mycompany.com";
-    private string _mailFrom = "noreply@mycompany.com";
+    private string _mailTo = configuration["MailSettings:mailToAddress"] ?? throw new ArgumentNullException("MailSettings:mailToAddress");
+    private string _mailFrom = configuration["MailSettings:mailToAddress"] ?? throw new ArgumentNullException("MailSettings:mailToAddress");
 
     public void Send(string subject, string message)
     {
