@@ -1,5 +1,4 @@
 ﻿using FraudNet.API.Data.Implementations;
-using FraudNet.API.Models.Payee;
 
 namespace FraudNet.API.Tests.Models;
 
