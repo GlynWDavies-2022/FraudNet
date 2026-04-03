@@ -4,17 +4,46 @@
 @payeeId = 5
 @paymentId = 1
 
-###
-GET {{baseUrl}}/api/companies/{{companyId}}/batches
+### Batches
 
 ###
-GET {{baseUrl}}/api/companies/{{companyId}}/batches/{{batchId}}
+GET {{baseUrl}}/api/batches/{{batchId}}
 
 ###
-GET {{baseUrl}}/api/companies
+GET {{baseUrl}}/api/batches/{{batchId}}
 
 ###
-GET {{baseUrl}}/api/companies/{{companyId}}
+GET {{baseUrl}}/api/bat
+
+###
+POST {{baseUrl}}/api/batches
+Content-Type: application/json
+{
+    "fileName": "ABD-20260304-04.txt"
+}
+
+###
+PUT {{baseUrl}}/api/batches/{{batchId}}
+Content-Type: application/json
+{
+    "fileName":"ABD-20260304-04.chg"
+}
+
+###
+PATCH {{baseUrl}}/api/payees/{{payeeId}}
+Content-Type: application/json-patch+json
+[
+    {
+        "op": "replace",
+        "path": "/name",
+        "value": "ABD-20260304-04.chg"
+    }
+]
+
+###
+DELETE {{baseUrl}}/api/batches/{{batchesId}}
+
+### Payees
 
 ###
 POST {{baseUrl}}/api/payees
@@ -49,6 +78,8 @@ Content-Type: application/json-patch+json
 
 ###
 DELETE {{baseUrl}}/api/payees/{{payeeId}}
+
+### Payments
 
 ###
 GET {{baseUrl}}/api/payments
