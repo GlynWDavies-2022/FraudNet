@@ -40,6 +40,23 @@ Content-Type: application/json-patch+json
 ###
 DELETE {{baseUrl}}/api/batches/{{batchId}}
 
+### Companies
+
+###
+POST {{baseUrl}}/api/companies
+Content-Type: application/json
+{
+    "name":"Countryside"
+}
+
+###
+GET {{baseUrl}}/api/companies
+
+###
+GET {{baseUrl}}/api/companies/{{companyId}}
+
+###
+
 ### Payees
 
 ###

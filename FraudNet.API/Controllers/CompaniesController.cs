@@ -1,4 +1,5 @@
 ﻿using FraudNet.API.Data.Contracts;
+using FraudNet.API.Models.Batch;
 using FraudNet.API.Models.Company;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,14 +16,31 @@ public class CompaniesController : ControllerBase
         _companiesDataStore = companiesDataStore;
     }
 
-    [HttpGet]
-    public ActionResult<IEnumerable<CompanyDTO>> GetCompanies()
+    [HttpPost]
+    public ActionResult<CompanySummaryDTO> CreateCompany([FromBody] CompanyForCreationDTO company)
     {
-        return Ok(_companiesDataStore.Companies.ToList());
+        var createdCompany = _companiesDataStore.CreateCompany(company);
+
+        return CreatedAtAction(
+                nameof(GetCompanyById),
+                new
+                {
+                    id = createdCompany.Id,
+                },
+                createdCompany
+            );
     }
 
-    [HttpGet("{id}")]
-    public ActionResult<CompanyDTO> GetCompanyById(int id)
+    [HttpGet]
+    public ActionResult<IEnumerable<CompanySummaryDTO>> GetCompanies()
+    {
+        var companies = _companiesDataStore.Companies.ToList();
+
+        return Ok(companies);
+    }
+
+    [HttpGet("{id}",Name = "GetCompany")]
+    public ActionResult<CompanySummaryDTO> GetCompanyById(int id)
     {
         var company = _companiesDataStore.Companies.FirstOrDefault(c => c.Id == id);
 
