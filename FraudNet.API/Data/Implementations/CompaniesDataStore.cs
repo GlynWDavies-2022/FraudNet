@@ -62,6 +62,13 @@ public class CompaniesDataStore : ICompaniesDataStore
 
     public void DeleteCompany(int id)
     {
-        throw new NotImplementedException();
+        var companyToRemove = Companies.Find(c => c.Id == id);
+
+        if (companyToRemove is null)
+        {
+            return;
+        }
+
+        Companies.Remove(companyToRemove);
     }
 }

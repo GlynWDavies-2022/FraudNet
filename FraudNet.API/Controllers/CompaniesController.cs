@@ -1,6 +1,9 @@
 ﻿using FraudNet.API.Data.Contracts;
+using FraudNet.API.Data.Implementations;
 using FraudNet.API.Models.Batch;
 using FraudNet.API.Models.Company;
+using FraudNet.API.Models.Payee;
+using Microsoft.AspNetCore.JsonPatch.SystemTextJson;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FraudNet.API.Controllers;
@@ -50,5 +53,75 @@ public class CompaniesController : ControllerBase
         }
 
         return Ok(company);
+    }
+
+    [HttpPut("{id}")]
+    public ActionResult UpdateCompany(CompanyForUpdateDTO company, int id)
+    {
+        if (company == null)
+        {
+            return BadRequest();
+        }
+
+        if (id == 0)
+        {
+            return BadRequest();
+        }
+
+        var companyToUpdate = _companiesDataStore.Companies.FirstOrDefault(c => c.Id == id);
+
+        if (companyToUpdate == null)
+        {
+            return NotFound();
+        }
+        ;
+
+        companyToUpdate.Name = company.Name;
+
+        return NoContent();
+    }
+
+    [HttpPatch("{id}")]
+    public ActionResult UpdateCompany(int id, JsonPatchDocument<CompanyForUpdateDTO> company)
+    {
+        var companyFromStore = _companiesDataStore.Companies.FirstOrDefault(p => p.Id == id);
+
+        if (companyFromStore == null)
+        {
+            return NotFound();
+        }
+
+        var companyToPatch = new CompanyForUpdateDTO()
+        {
+            Name = companyFromStore.Name!
+        };
+
+        company.ApplyTo(companyToPatch, jsonPatchError =>
+        {
+            var key = jsonPatchError.AffectedObject.GetType().Name;
+            ModelState.AddModelError(key, jsonPatchError.ErrorMessage);
+        });
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        if (!TryValidateModel(companyToPatch))
+        {
+            return BadRequest(ModelState);
+        }
+
+        companyFromStore.Name = companyToPatch.Name;
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult DeleteCompany(int id)
+    {
+        _companiesDataStore.DeleteCompany(id);
+
+        return NoContent();
     }
 }
