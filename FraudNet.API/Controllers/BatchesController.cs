@@ -13,9 +13,12 @@ public class BatchesController : ControllerBase
 {
     private readonly IBatchesDataStore _batchesDataStore;
 
-    public BatchesController(IBatchesDataStore batchesDataStore)
+    private readonly ILogger<BatchesController> _logger;
+
+    public BatchesController(IBatchesDataStore batchesDataStore, ILogger<BatchesController> logger)
     {
         _batchesDataStore = batchesDataStore;
+        _logger = logger;
     }
 
     [HttpPost]
@@ -27,22 +30,40 @@ public class BatchesController : ControllerBase
                 nameof(GetBatchById),
                 new
                 {
-                    id = createdBatch.Id,
+                    batchId = createdBatch.Id,
                 },
                 createdBatch
             );
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<BatchDetailDTO>> GetBatches(int companyId)
+    public ActionResult<IEnumerable<BatchDetailDTO>> GetBatches()
     {
-        throw new NotImplementedException();
+        var batches = _batchesDataStore.Batches;
+
+        if (batches is null)
+        {
+            _logger.LogInformation("No batches were found.");
+
+            return NotFound();
+        }
+
+        return Ok(batches);
     }
 
     [HttpGet("{batchId}", Name = "GetBatch")]
     public ActionResult<IEnumerable<BatchDetailDTO>> GetBatchById(int batchId)
     {
-        throw new NotImplementedException();
+        var batch = _batchesDataStore.Batches.FirstOrDefault(b => b.Id == batchId);
+
+        if (batch is null)
+        {
+            _logger.LogInformation("No batch was found with an id of {id}", batchId);
+
+            return NotFound();
+        }
+
+        return Ok(batch);
     }
 
     [HttpPut("{id}")]
@@ -63,8 +84,7 @@ public class BatchesController : ControllerBase
         if (batchToUpdate == null)
         {
             return NotFound();
-        }
-        ;
+        };
 
         batchToUpdate.FileName = batch.FileName;
 

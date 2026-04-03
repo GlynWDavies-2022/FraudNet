@@ -44,7 +44,8 @@ public class BatchesDataStore : IBatchesDataStore
         var batchSummaryDTO = new BatchSummaryDTO
         {
             Id = newId,
-            FileName = batch.FileName
+            FileName = batch.FileName,
+            Timestamp = DateTime.Now,
         };
 
         Batches.Add(batchSummaryDTO);

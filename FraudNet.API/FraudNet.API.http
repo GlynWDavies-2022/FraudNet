@@ -7,13 +7,10 @@
 ### Batches
 
 ###
-GET {{baseUrl}}/api/batches/{{batchId}}
+GET {{baseUrl}}/api/batches
 
 ###
 GET {{baseUrl}}/api/batches/{{batchId}}
-
-###
-GET {{baseUrl}}/api/bat
 
 ###
 POST {{baseUrl}}/api/batches
@@ -30,18 +27,18 @@ Content-Type: application/json
 }
 
 ###
-PATCH {{baseUrl}}/api/payees/{{payeeId}}
+PATCH {{baseUrl}}/api/batches/{{batchId}}
 Content-Type: application/json-patch+json
 [
     {
         "op": "replace",
-        "path": "/name",
+        "path": "/fileName",
         "value": "ABD-20260304-04.chg"
     }
 ]
 
 ###
-DELETE {{baseUrl}}/api/batches/{{batchesId}}
+DELETE {{baseUrl}}/api/batches/{{batchId}}
 
 ### Payees
 
