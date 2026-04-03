@@ -2,14 +2,9 @@
 
 namespace FraudNet.API.Models.Batch;
 
-public class BatchDTO
+public class BatchSummaryDTO
 {
     public int Id { get; set; }
     public string FileName { get; set; } = string.Empty;
     public DateTime Timestamp { get; set; }
-    public ICollection<PaymentDTO> Payments { get; set; } = [];
-    public int PaymentCount
-    {
-        get => Payments.Count;
-    }
 }

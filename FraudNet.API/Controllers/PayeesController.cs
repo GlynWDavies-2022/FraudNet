@@ -9,8 +9,7 @@ namespace FraudNet.API.Controllers;
 [Route("api/payees")]
 [ApiController]
 public class PayeesController(IPayeeDataStore payeeDataStore,
-                              ILogger<PayeesController> logger,
-                              IMailService localMailService) : ControllerBase
+                              ILogger<PayeesController> logger) : ControllerBase
 {
     [HttpPost]
     public ActionResult<PayeeDTO> CreatePayee([FromBody] PayeeForCreationDTO payee)
@@ -30,7 +29,7 @@ public class PayeesController(IPayeeDataStore payeeDataStore,
     [HttpGet]
     public ActionResult<IEnumerable<PayeeDTO>> GetPayees()
     {
-        var payees = payeeDataStore.Payees.ToList();
+        var payees = payeeDataStore.Payees;
 
         if (payees is null)
         {
@@ -123,8 +122,6 @@ public class PayeesController(IPayeeDataStore payeeDataStore,
     public ActionResult DeletePointOfInterest(int id)
     {
         payeeDataStore.DeletePayee(id);
-
-        localMailService.Send("Payee Deletion", "A payee was deleted!");
 
         return NoContent();
     }

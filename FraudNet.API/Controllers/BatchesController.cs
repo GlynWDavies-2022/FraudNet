@@ -4,47 +4,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FraudNet.API.Controllers;
 
-[Route("api/companies/{companyId}/batches")]
+[Route("api/batches")]
 [ApiController]
 public class BatchesController : ControllerBase
 {
-    private readonly ICompaniesDataStore _companiesDataStore;
+    private readonly IBatchesDataStore _batchesDataStore;
 
-    public BatchesController(ICompaniesDataStore companiesDataStore)
+    public BatchesController(IBatchesDataStore batchesDataStore)
     {
-        _companiesDataStore = companiesDataStore;
+        _batchesDataStore = batchesDataStore;
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<BatchDTO>> GetBatches(int companyId)
+    public ActionResult<IEnumerable<BatchDetailDTO>> GetBatches(int companyId)
     {
-        var company = _companiesDataStore.Companies.FirstOrDefault(c => c.Id == companyId);
-
-        if (company == null)
-        {
-            return NotFound();
-        }
-
-        return Ok(company.Batches);
+        throw new NotImplementedException();
     }
 
     [HttpGet("{batchId}")]
-    public ActionResult<IEnumerable<BatchDTO>> GetBatchById(int companyId, int batchId)
+    public ActionResult<IEnumerable<BatchDetailDTO>> GetBatchById(int batchId)
     {
-        var company = _companiesDataStore.Companies.FirstOrDefault(c => c.Id == companyId);
-
-        if (company is null)
-        {
-            return NotFound();
-        }
-
-        var batch = company.Batches.FirstOrDefault(b => b.Id == batchId);
-
-        if (batch is null)
-        {
-            return NotFound();
-        }
-
-        return Ok(batch);
+        throw new NotImplementedException();
     }
 }

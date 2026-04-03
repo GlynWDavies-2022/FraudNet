@@ -15,26 +15,7 @@ public class CompaniesDataStore : ICompaniesDataStore
             {
                 Id = 1,
                 Name = "Abode",
-                Batches =
-                [
-                    new()
-                    {
-                        Id = 1,
-                        FileName = "ABD-20260329-01.txt",
-                        Payments =
-                        [
-                            new()
-                            {
-                                Id = 1,
-                                Timestamp = DateTime.Now,
-                                Amount = 999M,
-                                Reference = "A-123",
-                                Payee = "Anne Alpha",
-                                PaymentType = "Recurring"
-                            }
-                        ]
-                    }
-                ]
+                Batches = []
             }
         ];
     }
