@@ -1,4 +1,5 @@
 ﻿using FraudNet.API.Entities;
+using FraudNet.API.Enums;
 
 namespace FraudNet.API.Tests.Entities;
 

@@ -8,21 +8,36 @@ namespace FraudNet.API.Controllers;
 [Route("/api/payments")]
 public class PaymentsController : ControllerBase
 {
-    private IPaymentsDataStore _paymentsDataStore;
+    private readonly IPaymentsDataStore _paymentsDataStore;
 
     public PaymentsController(IPaymentsDataStore paymentsDataStore)
     {
         _paymentsDataStore = paymentsDataStore;
     }
 
+    [HttpPost]
+    public ActionResult<PaymentDTO> CreatePayee([FromBody] PaymentForCreationDTO payment)
+    {
+        var createdPayment = _paymentsDataStore.CreatePayment(payment);
+
+        return CreatedAtAction(
+                nameof(GetPaymentById),
+                new 
+                {
+                    id = createdPayment.Id,
+                },
+                createdPayment
+            );
+    }
+
     [HttpGet()]
     public ActionResult<IEnumerable<PaymentDTO>> GetPayments()
     {
-        return new JsonResult(_paymentsDataStore.Payments);
+        return _paymentsDataStore.Payments;
     }
 
-    [HttpGet("{id}")]
-    public ActionResult<PaymentDTO> GetCityById(int id)
+    [HttpGet("{id}", Name = "GetPayment")]
+    public ActionResult<PaymentDTO> GetPaymentById(int id)
     {
         var payment = _paymentsDataStore.Payments.FirstOrDefault(p => p.Id == id);
 

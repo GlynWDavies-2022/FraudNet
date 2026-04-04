@@ -1,4 +1,4 @@
-﻿namespace FraudNet.API.Entities;
+﻿namespace FraudNet.API.Enums;
 
 public enum PaymentType
 {

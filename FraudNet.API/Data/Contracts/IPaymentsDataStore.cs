@@ -5,5 +5,7 @@ namespace FraudNet.API.Data.Contracts
     public interface IPaymentsDataStore
     {
         public List<PaymentDTO> Payments { get; }
+        public PaymentDTO CreatePayment(PaymentForCreationDTO payment);
+        public int GetNewId();
     }
 }

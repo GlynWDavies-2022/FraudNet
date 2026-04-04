@@ -1,4 +1,6 @@
-﻿namespace FraudNet.API.Entities;
+﻿using FraudNet.API.Enums;
+
+namespace FraudNet.API.Entities;
 
 public class Payment : BaseEntity, IEquatable<Payment>
 {
