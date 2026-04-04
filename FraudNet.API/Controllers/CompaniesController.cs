@@ -1,8 +1,5 @@
 ﻿using FraudNet.API.Data.Contracts;
-using FraudNet.API.Data.Implementations;
-using FraudNet.API.Models.Batch;
 using FraudNet.API.Models.Company;
-using FraudNet.API.Models.Payee;
 using Microsoft.AspNetCore.JsonPatch.SystemTextJson;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +17,7 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<CompanySummaryDTO> CreateCompany([FromBody] CompanyForCreationDTO company)
+    public ActionResult<CompanyDTO> CreateCompany([FromBody] CompanyForCreationDTO company)
     {
         var createdCompany = _companiesDataStore.CreateCompany(company);
 
@@ -35,15 +32,15 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<CompanySummaryDTO>> GetCompanies()
+    public ActionResult<IEnumerable<CompanyDTO>> GetCompanies()
     {
         var companies = _companiesDataStore.Companies.ToList();
 
         return Ok(companies);
     }
 
-    [HttpGet("{id}",Name = "GetCompany")]
-    public ActionResult<CompanySummaryDTO> GetCompanyById(int id)
+    [HttpGet("{id}", Name = "GetCompany")]
+    public ActionResult<CompanyDTO> GetCompanyById(int id)
     {
         var company = _companiesDataStore.Companies.FirstOrDefault(c => c.Id == id);
 

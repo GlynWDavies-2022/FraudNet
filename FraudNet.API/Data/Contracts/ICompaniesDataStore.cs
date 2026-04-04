@@ -4,8 +4,8 @@ namespace FraudNet.API.Data.Contracts;
 
 public interface ICompaniesDataStore
 {
-    public List<CompanySummaryDTO> Companies { get; }
+    public List<CompanyDTO> Companies { get; }
     public int GetNextId();
-    public CompanySummaryDTO CreateCompany(CompanyForCreationDTO company);
+    public CompanyDTO CreateCompany(CompanyForCreationDTO company);
     public void DeleteCompany(int id);
 }

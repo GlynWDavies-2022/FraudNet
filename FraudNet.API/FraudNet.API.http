@@ -57,7 +57,24 @@ DELETE {{baseUrl}}/api/batches/{{batchId}}
 POST {{baseUrl}}/api/companies
 Content-Type: application/json
 {
-    "name":"Countryside"
+    "name":"Countryside",
+    "batches": [
+        {
+            "id": 2,
+            "filename": "ABD-20260404-02",
+            "payments": [
+                {
+                    "id": 2,
+                    "reference": "ABD-20260404-02",
+                    "amount": "1250",
+                    "payee": {
+                        "id": 2,
+                        "name": "Helga Hotel"
+                    }
+                }
+            ]
+        }
+    ]
 }
 
 ###
