@@ -6,6 +6,7 @@ namespace FraudNet.API.Data.Contracts
     {
         public List<PaymentDTO> Payments { get; }
         public PaymentDTO CreatePayment(PaymentForCreationDTO payment);
+        public void DeletePayment(int paymentId);
         public int GetNewId();
     }
 }

@@ -17,8 +17,8 @@ public class PaymentsDataStore : IPaymentsDataStore
             {
                 Id = 1,
                 Timestamp = DateTime.Now,
-                Amount = 999M,
-                Reference = "A-123",
+                Amount = 1000M,
+                Reference = "ABD-20260404-01",
                 Payee = new PayeeDTO
                 {
                     Id = 1,
@@ -31,10 +31,14 @@ public class PaymentsDataStore : IPaymentsDataStore
             },
             new()
             {
+                Id = 2,
+                Timestamp = DateTime.Now,
+                Amount = 1500M,
+                Reference = "ABD-20260404-02",
                 Payee = new PayeeDTO
                 {
                     Id = 2,
-                    Name = "Brendan Bravo",
+                    Name = "Brian Bravo",
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
 
@@ -61,6 +65,18 @@ public class PaymentsDataStore : IPaymentsDataStore
         Payments.Add(paymentDTO);
 
         return paymentDTO;
+    }
+
+    public void DeletePayment(int id)
+    {
+        var paymentToDelete = Payments.Find(p => p.Id == id);
+
+        if (paymentToDelete == null)
+        {
+            return;
+        }
+
+        Payments.Remove(paymentToDelete);
     }
 
     public int GetNewId()

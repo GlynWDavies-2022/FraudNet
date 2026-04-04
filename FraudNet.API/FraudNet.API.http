@@ -2,7 +2,7 @@
 @batchId = 1
 @companyId = 1
 @payeeId = 5
-@paymentId = 1
+@paymentId = 3
 
 ### Batches
 
@@ -124,3 +124,42 @@ Accept: application/json
 ###
 GET {{baseUrl}}/api/payments/{{paymentId}}
 
+###
+POST {{baseUrl}}/api/payments
+Content-Type: application/json
+{
+    "amount": "2000",
+    "reference": "ABD-20260404-03",
+    "payee": {
+        "id": 3,
+        "name": "Hayley Hotel"
+    },
+    "paymentType": 1
+}
+
+###
+PUT {{baseUrl}}/api/payments/{{paymentId}}
+Content-Type: application/json
+{
+    "amount": "2200",
+    "reference": "ABD-20260404-03",
+    "payee": {
+        "id": 3,
+        "name": "Hayley Hotel"
+    },
+    "paymentType": 1
+}
+
+###
+PATCH {{baseUrl}}/api/payments/{{paymentId}}
+Content-Type: application/json-patch+json
+[
+    {
+        "op": "replace",
+        "path": "/amount",
+        "value": "3000"
+    }
+]
+
+###
+DELETE {{baseUrl}}/api/payments/{{paymentId}}
