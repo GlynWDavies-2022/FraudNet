@@ -22,7 +22,7 @@ public class BatchesController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<BatchSummaryDTO> CreateBatch([FromBody] BatchForCreationDTO batch)
+    public ActionResult<BatchDTO> CreateBatch([FromBody] BatchForCreationDTO batch)
     {
         var createdBatch = _batchesDataStore.CreateBatch(batch);
 
@@ -37,7 +37,7 @@ public class BatchesController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<BatchDetailDTO>> GetBatches()
+    public ActionResult<IEnumerable<BatchDTO>> GetBatches()
     {
         var batches = _batchesDataStore.Batches;
 
@@ -52,7 +52,7 @@ public class BatchesController : ControllerBase
     }
 
     [HttpGet("{batchId}", Name = "GetBatch")]
-    public ActionResult<IEnumerable<BatchDetailDTO>> GetBatchById(int batchId)
+    public ActionResult<IEnumerable<BatchDTO>> GetBatchById(int batchId)
     {
         var batch = _batchesDataStore.Batches.FirstOrDefault(b => b.Id == batchId);
 

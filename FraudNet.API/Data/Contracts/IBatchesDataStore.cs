@@ -4,8 +4,9 @@ namespace FraudNet.API.Data.Contracts;
 
 public interface IBatchesDataStore
 {
-    public List<BatchSummaryDTO> Batches { get; }
+    public List<BatchDTO> Batches { get; }
     public int GetNextId();
-    public BatchSummaryDTO CreateBatch(BatchForCreationDTO batch);
+    public BatchDTO CreateBatch(BatchForCreationDTO batch);
     public void DeleteBatch(int id);
+    public int GetPaymentCount();
 }

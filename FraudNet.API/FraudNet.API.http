@@ -16,7 +16,18 @@ GET {{baseUrl}}/api/batches/{{batchId}}
 POST {{baseUrl}}/api/batches
 Content-Type: application/json
 {
-    "fileName": "ABD-20260304-04.txt"
+    "fileName": "ABD-20260304-04.txt",
+    "payments": [
+        {
+            "id": 4,
+            "amount": "1750",
+            "reference": "ABD-20260404-05",
+            "payee": {
+                "id": 4,
+                "name": "Deanne Delta"
+            }
+        }
+    ]
 }
 
 ###

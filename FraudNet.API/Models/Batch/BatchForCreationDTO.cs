@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FraudNet.API.Models.Payment;
+using System.ComponentModel.DataAnnotations;
 
 namespace FraudNet.API.Models.Batch;
 
@@ -9,4 +10,5 @@ public class BatchForCreationDTO
     [Required(ErrorMessage = "A file name must be provided.")]
     [MaxLength(50)]
     public string FileName { get; set; } = string.Empty;
+    public ICollection<PaymentDTO> Payments { get; set; } = [];
 }

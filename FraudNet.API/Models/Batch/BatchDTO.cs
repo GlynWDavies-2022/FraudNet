@@ -1,8 +1,9 @@
-﻿using FraudNet.API.Models.Payment;
+﻿using FraudNet.API.Controllers;
+using FraudNet.API.Models.Payment;
 
 namespace FraudNet.API.Models.Batch;
 
-public class BatchDetailDTO
+public class BatchDTO
 {
     public int Id { get; set; }
     public string FileName { get; set; } = string.Empty;
