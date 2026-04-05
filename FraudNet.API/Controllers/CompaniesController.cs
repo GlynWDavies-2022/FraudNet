@@ -55,25 +55,7 @@ public class CompaniesController : ControllerBase
     [HttpPut("{id}")]
     public ActionResult UpdateCompany(CompanyForUpdateDTO company, int id)
     {
-        if (company == null)
-        {
-            return BadRequest();
-        }
-
-        if (id == 0)
-        {
-            return BadRequest();
-        }
-
-        var companyToUpdate = _companiesDataStore.Companies.FirstOrDefault(c => c.Id == id);
-
-        if (companyToUpdate == null)
-        {
-            return NotFound();
-        }
-        ;
-
-        companyToUpdate.Name = company.Name;
+        if (!_companiesDataStore.UpdateCompany(id, company)) return BadRequest();
 
         return NoContent();
     }

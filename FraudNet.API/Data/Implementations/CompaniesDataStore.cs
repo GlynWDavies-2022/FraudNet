@@ -67,6 +67,20 @@ public class CompaniesDataStore : ICompaniesDataStore
         return companyDTO;
     }
 
+    public bool UpdateCompany(int id, CompanyForUpdateDTO company)
+    {
+        var companyToUpdate = Companies.Find(c  => c.Id == id);
+
+        if (companyToUpdate != null)
+        {
+            companyToUpdate.Name = company.Name;
+
+            return true;
+        }
+
+        return false;
+    }
+
     public void DeleteCompany(int id)
     {
         var companyToRemove = Companies.Find(c => c.Id == id);
